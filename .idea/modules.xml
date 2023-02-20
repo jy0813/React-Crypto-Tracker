@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/React-Crypto-Tracker.iml" filepath="$PROJECT_DIR$/React-Crypto-Tracker.iml" />
       <module fileurl="file://$PROJECT_DIR$/../react-master-class.iml" filepath="$PROJECT_DIR$/../react-master-class.iml" />
     </modules>
   </component>
