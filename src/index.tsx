@@ -10,25 +10,25 @@ import Coins from "./page/Coins";
 import Coin from "./page/Coin";
 
 const router = createBrowserRouter([
-    {
-        path:'/',
-        element:<App/>,
-        errorElement:<NotFound/>,
-        children:[
-            {index:true,path:'/', element:<Coins/>},
-            {path:'/:coinId', element:<Coin/>},
-        ]
-    }
+  {
+    path: '/',
+    element: <App/>,
+    errorElement: <NotFound/>,
+    children: [
+      {index: true, path: '/', element: <Coins/>},
+      {path: '/:coinId', element: <Coin/>},
+    ]
+  }
 ]);
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
+    <React.StrictMode>
+      <ThemeProvider theme={theme}>
         <RouterProvider router={router}/>
-    </ThemeProvider>
-  </React.StrictMode>
+      </ThemeProvider>
+    </React.StrictMode>
 );
 
