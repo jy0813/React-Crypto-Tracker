@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import {Outlet} from "react-router-dom";
 import {createGlobalStyle} from "styled-components";
+import {ReactQueryDevtools} from "react-query/devtools";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -73,6 +74,7 @@ function App() {
       <>
         <GlobalStyle/>
         <Outlet/>
+        <ReactQueryDevtools initialIsOpen={true}/>
       </>
   );
 }

@@ -10,6 +10,11 @@ import Coins from "./page/Coins";
 import Coin from "./page/Coin";
 import Chart from "./page/Chart";
 import Price from "./page/Price";
+import {QueryClient, QueryClientProvider } from "react-query";
+
+
+
+const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
   {
@@ -36,9 +41,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-      <ThemeProvider theme={theme}>
-        <RouterProvider router={router}/>
-      </ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <RouterProvider router={router}/>
+        </ThemeProvider>
+      </QueryClientProvider>
     </React.StrictMode>
 );
 

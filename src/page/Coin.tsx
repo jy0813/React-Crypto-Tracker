@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
 import {Link, Outlet, useLocation, useMatch, useParams} from "react-router-dom";
 import styled from "styled-components";
-import axios from "axios";
+import {useQuery} from "react-query";
+import {axiosInfoData, axiosPriceData} from "../api/api";
 
 
 const Container = styled.div`
@@ -133,23 +133,13 @@ interface PriceData {
 }
 
 function Coin() {
-  const [loading, setLoading] = useState(true);
   const {coinId} = useParams();
   const {state} = useLocation() as RouteState;
-  const [info, setInfo] = useState<InfoData>();
-  const [priceInfo, setPriceInfo] = useState<PriceData>();
   const priceMatch = useMatch("/:coinId/price");
   const chartMatch = useMatch("/:coinId/chart");
-  useEffect(() => {
-    (async () => {
-      const infoData = await (await axios.get(`https://api.coinpaprika.com/v1/coins/${coinId}`)).data;
-      const priceData = await(await axios.get(`https://api.coinpaprika.com/v1/tickers/${coinId}`)).data;
-      setInfo(infoData)
-      setPriceInfo(priceData)
-      setLoading(false);
-    })();
-  }, [coinId])
-
+  const {isLoading:infoLoading, data:info} =  useQuery<InfoData>(['info',coinId], () => axiosInfoData(coinId!))
+  const {isLoading:priceLoading, data:priceInfo} =  useQuery<PriceData>(['price',coinId], () => axiosPriceData(coinId!))
+  const loading = infoLoading || priceLoading;
   return (
       <Container>
         <Header>
